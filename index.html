@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Labelruimte</title>
+  <link rel="icon" href="labelruimte-icoon.svg" type="image/svg+xml">
+  <link rel="preload" href="lettertype.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="stijl.css">
+</head>
+<body>
+  <header class="kopbalk">
+    <div class="kolom">
+      <!-- Het logo staat hier in de pagina zelf, zodat de tekst het
+           lettertype van de site gebruikt. Zelfde tekening als
+           labelruimte-logo.svg. Klikken gaat naar het startscherm. -->
+      <div class="kop-rij">
+        <a class="logo" href="#start">
+          <svg viewBox="0 0 470 96" role="img" aria-label="Labelruimte">
+            <path d="M48 8 12 38v42a8 8 0 0 0 8 8h56a8 8 0 0 0 8-8V38Z" fill="#2f6850"/>
+            <rect x="28" y="42" width="20" height="9" rx="4.5" fill="#F4F3EE"/>
+            <rect x="28" y="56" width="30" height="9" rx="4.5" fill="#F4F3EE" opacity=".8"/>
+            <rect x="28" y="70" width="40" height="9" rx="4.5" fill="#F4F3EE" opacity=".6"/>
+            <text x="108" y="66" font-size="52" font-weight="800" letter-spacing="-1" fill="#1C2321">Label<tspan fill="#2f6850">ruimte</tspan></text>
+          </svg>
+        </a>
+        <a class="kop-link" href="#waarom" data-tekst="waarom.kopLink"></a>
+      </div>
+      <p class="kopregel" data-tekst="kopregel"></p>
+    </div>
+  </header>
+
+  <main class="kolom">
+
+    <!-- SCHERM 1: START -->
+    <section id="scherm-start" class="scherm" aria-labelledby="start-titel">
+      <h1 id="start-titel" tabindex="-1" data-tekst="start.titel"></h1>
+      <p class="intro" data-tekst="start.intro"></p>
+      <ul id="punten" class="punten"></ul>
+      <p class="duur" data-tekst="start.duur"></p>
+      <p class="waarom-regel"><span data-tekst="start.waaromZin"></span> <a href="#waarom" data-tekst="start.waaromLink"></a></p>
+
+      <form id="startformulier" class="kaart" novalidate>
+        <fieldset class="groep-velden">
+          <legend data-tekst="start.adresLabel"></legend>
+          <div class="adres-rij">
+            <div class="veld veld-postcode">
+              <label for="postcode" data-tekst="start.postcodeLabel"></label>
+              <div class="met-icoon">
+                <svg class="icoon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9.8" r="2.4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                <input id="postcode" name="postcode" type="text" autocomplete="off" maxlength="7" aria-describedby="adres-uitleg">
+              </div>
+            </div>
+            <div class="veld veld-huisnummer">
+              <label for="huisnummer" data-tekst="start.huisnummerLabel"></label>
+              <input id="huisnummer" name="huisnummer" type="text" autocomplete="off" maxlength="10" aria-describedby="adres-uitleg">
+            </div>
+          </div>
+          <p id="adres-status" class="adres-status" role="status"></p>
+          <div id="adres-keuzes" class="adres-keuzes" hidden></div>
+          <div class="adres-rij adres-rij-auto">
+            <div class="veld">
+              <label for="straat" data-tekst="start.straatLabel"></label>
+              <input id="straat" name="straat" type="text" readonly tabindex="-1">
+            </div>
+            <div class="veld">
+              <label for="woonplaats" data-tekst="start.woonplaatsLabel"></label>
+              <input id="woonplaats" name="woonplaats" type="text" readonly tabindex="-1">
+            </div>
+          </div>
+          <p id="adres-uitleg" class="hulptekst" data-tekst="start.adresUitleg"></p>
+        </fieldset>
+
+        <fieldset class="groep-velden" aria-describedby="label-melding">
+          <legend data-tekst="start.labelVraag"></legend>
+          <p id="label-status" class="adres-status label-status" role="status"></p>
+
+          <div id="label-gevonden" class="label-gevonden" aria-live="polite" hidden>
+            <p class="label-bron" id="label-bron"></p>
+            <div class="label-uitslag">
+              <span class="label-badge" id="label-badge"></span>
+              <span class="label-geldig" id="label-geldig"></span>
+            </div>
+            <p class="hulptekst label-uitleg" data-tekst="start.labelSchaal"></p>
+            <button type="button" class="knop-tekst" id="label-anders" aria-expanded="false" aria-controls="label-keuzes" data-tekst="start.labelAnders"></button>
+          </div>
+
+          <div id="label-keuzes">
+            <div id="labelknoppen"></div>
+            <p class="hulptekst">
+              <a id="opzoeken-link" data-tekst="start.opzoekenTekst"></a>
+              <span id="opzoeken-markering" class="tussen-haken"></span>
+            </p>
+          </div>
+          <p id="label-melding" class="melding" role="alert"></p>
+        </fieldset>
+
+        <button type="submit" class="knop"><span data-tekst="start.knop"></span> <span class="pijl" aria-hidden="true">→</span></button>
+      </form>
+    </section>
+
+    <!-- SCHERM 2: UITKOMST -->
+    <section id="scherm-uitkomst" class="scherm" aria-labelledby="uitkomst-titel" hidden>
+      <button type="button" class="terug" data-naar="start"></button>
+      <h1 id="uitkomst-titel" tabindex="-1" data-tekst="uitkomst.titel"></h1>
+
+      <p class="gekozen">
+        <span class="chip"><span class="onzichtbaar"><span data-tekst="uitkomst.labelKop"></span>: </span><span id="toon-label"></span></span>
+        <span class="gekozen-adres"><span class="onzichtbaar"><span data-tekst="uitkomst.adresKop"></span>: </span><span id="toon-adres"></span></span>
+      </p>
+
+      <p class="rustig" data-tekst="uitkomst.maximumMelding"></p>
+
+      <div class="kaart hoofdkaart">
+        <h2 data-tekst="uitkomst.aankoopKop"></h2>
+        <p class="bedrag" id="bedrag-aankoop"></p>
+        <p class="uitleg met-begrippen" data-tekst="uitkomst.aankoopUitleg"></p>
+      </div>
+
+      <div class="kaart">
+        <h2 data-tekst="uitkomst.verduurzamingKop"></h2>
+        <p class="bedrag" id="bedrag-verduurzaming"></p>
+        <ul id="verduurzaming-punten" class="uitleg uitlegpunten met-begrippen"></ul>
+        <details class="uitklap">
+          <summary><span data-tekst="uitkomst.uitgevenKop"></span></summary>
+          <div id="uitgeven-groepen"></div>
+        </details>
+      </div>
+
+      <p class="samen"><span data-tekst="uitkomst.samenKop"></span> <span id="bedrag-samen"></span></p>
+
+      <div class="kaart zacht">
+        <h2 class="kop-met-icoon">
+          <svg class="icoon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-tekst="uitkomst.vragenKop"></span>
+        </h2>
+        <ul id="vragen" class="vragenlijst met-begrippen"></ul>
+      </div>
+
+      <div class="kaart">
+        <h2 data-tekst="uitkomst.energieKop"></h2>
+        <p class="energie"><span id="energie-waarde"></span> <span data-tekst="uitkomst.energieUitleg"></span></p>
+      </div>
+
+      <div class="kaart">
+        <h2 data-tekst="uitkomst.adviseursKop"></h2>
+        <ul id="adviseurs" class="adviseurs"></ul>
+      </div>
+      <p class="gratis" data-tekst="uitkomst.gratisZin"></p>
+
+      <div class="knoppen">
+        <button type="button" class="knop knop-licht" id="deel-knop" data-tekst="uitkomst.deelKnop"></button>
+      </div>
+      <p id="deel-status" class="deel-status" role="status"></p>
+      <textarea id="deel-tekst" class="deel-tekst" rows="7" readonly aria-describedby="deel-status" hidden></textarea>
+
+      <p class="bron" id="bron"></p>
+    </section>
+
+    <!-- SCHERM 3: WAAROM LABELRUIMTE -->
+    <section id="scherm-waarom" class="scherm" aria-labelledby="waarom-titel" hidden>
+      <button type="button" class="terug" id="waarom-terug"></button>
+      <h1 id="waarom-titel" tabindex="-1" data-tekst="waarom.titel"></h1>
+
+      <div class="oprichter">
+        <img id="oprichter-foto" class="oprichter-foto" alt="" hidden>
+        <p class="oprichter-naam" data-tekst="waarom.naam"></p>
+        <p class="oprichter-rol" data-tekst="waarom.rol"></p>
+      </div>
+
+      <div id="waarom-blokken"></div>
+
+      <button type="button" class="knop" data-naar="start"><span data-tekst="waarom.knop"></span> <span class="pijl" aria-hidden="true">→</span></button>
+    </section>
+
+  </main>
+
+  <footer class="voet">
+    <div class="kolom"><p data-tekst="disclaimer"></p></div>
+  </footer>
+
+  <script src="gegevens.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
