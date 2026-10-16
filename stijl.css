@@ -482,13 +482,35 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
 
 /* Hypotheekadviseurs (voorbeelden) */
 .adviseurs { list-style: none; margin: 0; padding: 0; }
-.adviseur { padding: 1rem 0; border-bottom: 1px solid var(--rand-licht); }
+.adviseur {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.85rem;
+  align-items: start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rand-licht);
+}
+.adviseur .knop, .adviseur .deel-status { grid-column: 1 / -1; }
+/* Verzonnen logo's in de kleuren van de site */
+.adviseur-logo {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.adviseur-logo-vierkant { border-radius: 0.6rem; background: var(--bosgroen); color: var(--wit); }
+.adviseur-logo-rond { border-radius: 50%; background: var(--perzik); color: var(--antraciet); }
+.adviseur-logo-blad { border-radius: 1.4rem 0.3rem; background: var(--saliegroen); color: var(--bosgroen-donker); }
 .adviseur:first-child { padding-top: 0.25rem; }
 .adviseur:last-child { border-bottom: 0; padding-bottom: 0; }
 .adviseur-naam { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; margin: 0 0 0.15rem; font-weight: 700; }
 .adviseur-info { margin: 0; font-size: 0.95rem; color: var(--tekst-zacht); }
 .ster { color: var(--bosgroen); }
 .adviseur .knop { margin-top: 0.75rem; min-height: 3rem; }
+a.knop { text-decoration: none; }
 .gratis { margin: -0.5rem 0 0; font-size: 0.85rem; color: var(--tekst-zacht); }
 
 .deel-status { margin: 0.75rem 0 0; font-size: 0.95rem; font-weight: 600; color: var(--bosgroen-donker); }

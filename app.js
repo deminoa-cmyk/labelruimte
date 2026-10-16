@@ -407,32 +407,48 @@
 
   document.getElementById("energie-waarde").appendChild(voorbeeld(G.uitkomst.energieWaarde));
 
-  // Hypotheekadviseurs. Het zijn allemaal VOORBEELDEN. De knop belt
-  // nergens naartoe, hij laat alleen een korte melding zien.
+  // Hypotheekadviseurs. Het zijn allemaal VOORBEELDEN met een verzonnen
+  // logo, nummer en score. Staat bij belNaar in gegevens.js een nummer,
+  // dan belt de knop naar dat nummer. Anders laat de knop alleen een
+  // korte melding zien.
   var adviseurs = document.getElementById("adviseurs");
   G.uitkomst.adviseurs.forEach(function (a) {
     var li = maak("li", "adviseur");
+    var logo = maak("span", "adviseur-logo adviseur-logo-" + a.logoVorm, a.logo);
+    logo.setAttribute("aria-hidden", "true");
+    li.appendChild(logo);
+
+    var tekst = maak("div", "adviseur-tekst");
     var naam = maak("p", "adviseur-naam");
     naam.appendChild(maak("span", "", a.naam));
     naam.appendChild(maak("span", "voorbeeld-label", G.voorbeeldWoord));
-    li.appendChild(naam);
-    li.appendChild(maak("p", "adviseur-info", a.plaats));
+    tekst.appendChild(naam);
+    tekst.appendChild(maak("p", "adviseur-info", a.plaats + " · " + a.telefoon));
     var sterren = maak("p", "adviseur-info");
     var ster = maak("span", "ster", "★");
     ster.setAttribute("aria-hidden", "true");
     sterren.appendChild(ster);
     sterren.appendChild(document.createTextNode(" " + a.sterren));
-    li.appendChild(sterren);
-    var knop = maak("button", "knop knop-licht", G.uitkomst.belKnop);
-    knop.type = "button";
-    knop.appendChild(maak("span", "onzichtbaar", " (" + a.naam + ")"));
-    var status = maak("p", "deel-status");
-    status.setAttribute("role", "status");
-    knop.addEventListener("click", function () {
-      status.textContent = G.uitkomst.belVoorbeeld;
-    });
-    li.appendChild(knop);
-    li.appendChild(status);
+    tekst.appendChild(sterren);
+    li.appendChild(tekst);
+
+    if (G.uitkomst.belNaar) {
+      var bel = maak("a", "knop knop-licht", G.uitkomst.belKnop);
+      bel.href = "tel:" + G.uitkomst.belNaar;
+      bel.appendChild(maak("span", "onzichtbaar", " (" + a.naam + ")"));
+      li.appendChild(bel);
+    } else {
+      var knop = maak("button", "knop knop-licht", G.uitkomst.belKnop);
+      knop.type = "button";
+      knop.appendChild(maak("span", "onzichtbaar", " (" + a.naam + ")"));
+      var status = maak("p", "deel-status");
+      status.setAttribute("role", "status");
+      knop.addEventListener("click", function () {
+        status.textContent = G.uitkomst.belVoorbeeld;
+      });
+      li.appendChild(knop);
+      li.appendChild(status);
+    }
     adviseurs.appendChild(li);
   });
 

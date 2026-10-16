@@ -203,15 +203,20 @@ window.GEGEVENS = {
     energieWaarde: "€ ……",
     energieUitleg: "Per maand",
 
-    // Blok met hypotheekadviseurs. Dit zijn VOORBEELDEN met verzonnen
-    // namen en scores. De knop belt nergens naartoe: hij laat alleen
-    // de zin bij belVoorbeeld zien.
-    adviseursKop: "Praat met een hypotheekadviseur",
+    // Blok met hypotheekadviseurs. Dit zijn VOORBEELDEN: de namen, logo's,
+    // nummers en scores zijn verzonnen. De nummers kunnen niet bestaan
+    // (een abonneenummer begint nooit met een 0).
+    // logo = de letters in het logo, logoVorm = vierkant, rond of blad.
     adviseurs: [
-      { naam: "Lindeboom Hypotheekadvies", plaats: "Utrecht",   sterren: "4,8 van 5 op Google" },
-      { naam: "Adviesbureau De Kade",      plaats: "Zwolle",    sterren: "4,6 van 5 op Google" },
-      { naam: "Van Ommen Hypotheken",      plaats: "Eindhoven", sterren: "4,9 van 5 op Google" }
+      { naam: "Lindeboom Hypotheekadvies", plaats: "Utrecht",   telefoon: "030 012 34 56", sterren: "4,8 van 5 op Google", logo: "LH", logoVorm: "vierkant" },
+      { naam: "Adviesbureau De Kade",      plaats: "Zwolle",    telefoon: "038 045 67 89", sterren: "4,6 van 5 op Google", logo: "DK", logoVorm: "rond" },
+      { naam: "Van Ommen Hypotheken",      plaats: "Eindhoven", telefoon: "040 078 90 12", sterren: "4,9 van 5 op Google", logo: "VO", logoVorm: "blad" }
     ],
+    // Het nummer waar elke belknop naartoe belt: zonder spaties, met +31
+    // in plaats van de eerste 0. Bijvoorbeeld "+31612345678".
+    // Staat hier "" (leeg), dan laat de knop alleen de zin bij
+    // belVoorbeeld zien.
+    belNaar: "",
     belKnop: "Bel deze adviseur",
     belVoorbeeld: "Dit is een voorbeeld. Je kunt deze adviseur nog niet bellen.",
     // De kleine zin direct onder het blok met adviseurs.
