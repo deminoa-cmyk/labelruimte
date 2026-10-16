@@ -443,7 +443,8 @@
   });
 
   // Bij het eerste gebruik van een moeilijk woord komt aan het eind van
-  // die zin een rond vraagteken dat een uitleg van één zin uitklapt.
+  // die alinea of dat punt een rond vraagteken dat een korte uitleg
+  // uitklapt.
   var vakken = document.querySelectorAll("#scherm-uitkomst .met-begrippen");
   G.uitkomst.begrippen.forEach(function (b, i) {
     var woord = b.woord.toLowerCase();
@@ -454,11 +455,6 @@
         if (node.parentNode.closest(".wat-knop, .begrip-uitleg")) continue;
         var plek = node.nodeValue.toLowerCase().indexOf(woord);
         if (plek < 0) continue;
-        // Het vraagteken komt aan het eind van de zin met het woord:
-        // na de eerstvolgende punt, vraagteken of uitroepteken.
-        var na = node.nodeValue.slice(plek + woord.length);
-        var einde = na.search(/[.?!]/);
-        var rest = node.splitText(plek + woord.length + (einde < 0 ? na.length : einde + 1));
         // Een klein rondje met een vraagteken. Schermlezers horen
         // "Wat is dit? (woord)".
         var knop = maak("button", "wat-knop");
@@ -478,13 +474,35 @@
           this.setAttribute("aria-expanded", String(!open));
           document.getElementById(this.getAttribute("aria-controls")).hidden = open;
         });
-        rest.parentNode.insertBefore(document.createTextNode(" "), rest);
-        rest.parentNode.insertBefore(knop, rest);
-        node.parentNode.closest("li, p").appendChild(uitleg);
+        // Het vraagteken komt aan het eind van de alinea of het punt,
+        // de uitleg daaronder.
+        var blok = node.parentNode.closest("li, p");
+        // Het laatste woord en het vraagteken blijven samen op één regel,
+        // zodat het vraagteken nooit alleen op een nieuwe regel staat.
+        var houder = maak("span", "wat-houder");
+        var laatste = blok.lastChild;
+        if (laatste && laatste.nodeType === 3 && laatste.nodeValue.trim()) {
+          var tekstEinde = laatste.nodeValue.replace(/\s+$/, "");
+          laatste.nodeValue = tekstEinde;
+          var staart = laatste.splitText(tekstEinde.lastIndexOf(" ") + 1);
+          blok.replaceChild(houder, staart);
+          houder.appendChild(staart);
+        } else {
+          blok.appendChild(houder);
+        }
+        houder.appendChild(document.createTextNode("\u00a0"));
+        houder.appendChild(knop);
+        blok.appendChild(uitleg);
         return;
       }
     }
   });
+
+  // De bron onder de lijst "Waar mag ik dit aan uitgeven?".
+  var uitgevenBron = document.getElementById("uitgeven-bron");
+  uitgevenBron.appendChild(document.createTextNode(G.uitkomst.uitgevenBron.voor));
+  uitgevenBron.appendChild(nieuwTabbladLink(maak("a", "", G.uitkomst.uitgevenBron.tekst), G.uitkomst.uitgevenBron.link));
+  uitgevenBron.appendChild(document.createTextNode(G.uitkomst.uitgevenBron.na));
 
   // De bronregel met twee links.
   var bron = document.getElementById("bron");

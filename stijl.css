@@ -382,6 +382,7 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
 .uitlegpunten li { margin-bottom: 0.4rem; }
 
 /* "Wat is dit?" */
+.wat-houder { white-space: nowrap; }
 /* Klein rondje met een vraagteken. Het klikvlak is groter dan het
    rondje zelf, zodat je het op een telefoon makkelijk raakt. */
 .wat-knop {
@@ -524,6 +525,7 @@ a.knop { text-decoration: none; }
 
 .bron { margin: 2rem 0 0; font-size: 0.85rem; color: var(--tekst-zacht); line-height: 1.55; }
 .bron a { font-weight: 600; }
+.uitgeven-bron { margin: 0.9rem 0 0.25rem; font-size: 0.85rem; color: var(--tekst-zacht); line-height: 1.55; }
 
 /* ---------- VOORBEELD-markering ---------- */
 .voorbeeld-label {

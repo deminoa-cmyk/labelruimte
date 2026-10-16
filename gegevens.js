@@ -146,10 +146,9 @@ window.GEGEVENS = {
     // verschijnt een knopje "Wat is dit?".
     watIsDitKnop: "Wat is dit?",
     begrippen: [
-      { woord: "geldverstrekker", uitleg: "De bank of andere partij die je de hypotheek geeft." },
-      { woord: "bouwdepot", uitleg: "Een aparte rekening bij je hypotheek waaruit de rekeningen van de verbouwing worden betaald." },
-      { woord: "energiebesparende maatregelen", uitleg: "Aanpassingen waardoor je huis minder energie verbruikt, zoals isolatie." },
-      { woord: "woningwaarde", uitleg: "Wat het huis volgens een taxateur waard is." }
+      { woord: "geldverstrekker", uitleg: "Een geldverstrekker is de bank of andere partij die je de hypotheek geeft." },
+      { woord: "bouwdepot", uitleg: "Een bouwdepot is een aparte rekening bij je hypotheek. Daaruit worden de rekeningen van de verbouwing betaald." },
+      { woord: "energiebesparende maatregelen", uitleg: "Energiebesparende maatregelen zijn aanpassingen waardoor je huis minder energie verbruikt, zoals isolatie." }
     ],
 
     uitgevenKop: "Waar mag ik dit aan uitgeven?",
@@ -188,11 +187,18 @@ window.GEGEVENS = {
         ]
       }
     ],
+    // De bron onder de lijst hierboven. De lijst staat in artikel 1 van
+    // de regeling (gecontroleerd op 16 oktober 2026).
+    uitgevenBron: {
+      voor: "Dit is gebaseerd op de ",
+      tekst: "Tijdelijke regeling hypothecair krediet, artikel 1",
+      link: "https://wetten.overheid.nl/BWBR0032503/2026-01-01",
+      na: " (geldend vanaf 1 januari 2026). Wat niet in de regeling staat, valt er niet onder."
+    },
 
     vragenKop: "Vraag dit aan je hypotheekadviseur",
     vragen: [
       "Bij welke geldverstrekkers kan ik het extra bedrag voor verduurzaming krijgen?",
-      "Kan ik tot 106% van de woningwaarde lenen als ik verduurzaam?",
       "Hoe werkt het bouwdepot en welke offertes heb ik nodig?",
       "Krijg ik rentekorting bij een beter energielabel?",
       "Wat doet mijn studieschuld met wat ik kan lenen?"
