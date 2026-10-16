@@ -25,7 +25,10 @@
             <text x="108" y="66" font-size="52" font-weight="800" letter-spacing="-1" fill="#1C2321">Label<tspan fill="#2f6850">ruimte</tspan></text>
           </svg>
         </a>
-        <a class="kop-link" href="#waarom" data-tekst="waarom.kopLink"></a>
+        <nav class="kop-links">
+          <a class="kop-link" href="#waarom" data-tekst="waarom.kopLink"></a>
+          <a class="kop-link" href="#impact" data-tekst="impact.kopLink"></a>
+        </nav>
       </div>
       <p class="kopregel" data-tekst="kopregel"></p>
     </div>
@@ -169,7 +172,7 @@
         <p class="oprichter-rol" data-tekst="waarom.rol"></p>
       </div>
 
-      <div id="waarom-blokken"></div>
+      <div id="waarom-verhaal" class="kaart verhaal"></div>
 
       <p class="waarom-impact"><a href="#impact" data-tekst="waarom.impactLink"></a></p>
       <button type="button" class="knop" data-naar="start"><span data-tekst="waarom.knop"></span> <span class="pijl" aria-hidden="true">→</span></button>
@@ -231,10 +234,7 @@
   </aside>
 
   <footer class="voet">
-    <div class="kolom">
-      <p data-tekst="disclaimer"></p>
-      <p class="voet-link"><a href="#impact" data-tekst="impact.voetLink"></a></p>
-    </div>
+    <div class="kolom"><p data-tekst="disclaimer"></p></div>
   </footer>
 
   <script src="gegevens.js"></script>

@@ -530,12 +530,10 @@
     foto.src = W.foto;
     foto.hidden = false;
   }
-  var waaromBlokken = document.getElementById("waarom-blokken");
-  W.blokken.forEach(function (b) {
-    var blok = maak("div", "kaart");
-    blok.appendChild(maak("h2", "", b.kop));
-    blok.appendChild(maak("p", "uitleg", b.tekst));
-    waaromBlokken.appendChild(blok);
+  // Het verhaal: één tegel, met een alinea per regel uit gegevens.js.
+  var waaromVerhaal = document.getElementById("waarom-verhaal");
+  W.verhaal.forEach(function (alinea) {
+    waaromVerhaal.appendChild(maak("p", "", alinea));
   });
 
   /* ---------- Scherm 4: Impactrapport ---------- */

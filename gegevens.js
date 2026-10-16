@@ -42,7 +42,7 @@ window.GEGEVENS = {
     duur: "Invullen duurt minder dan een minuut.",
     // De regel boven de invoerkaart, met daarachter een link naar het
     // scherm "Waarom Labelruimte?".
-    waaromZin: "Ik ging zelf op hypotheekgesprek. Ik wist niet dat het energielabel invloed heeft op je leenruimte.",
+    waaromZin: "Ik ontdekte dat veel starters niet weten wat het energielabel doet met hun leenruimte.",
     waaromLink: "Lees waarom ik dit maak",
     adresLabel: "Adres van de woning",
     postcodeLabel: "Postcode",
@@ -245,16 +245,17 @@ window.GEGEVENS = {
     // De naam van je foto in de projectmap, bijvoorbeeld "oprichter.jpg".
     // Staat hier "" (leeg), dan wordt er geen foto getoond.
     foto: "",
-    naam: "[JOUW NAAM]",
+    // Je naam onder de foto. Staat hier "" (leeg), dan wordt er geen
+    // naam getoond.
+    naam: "",
     rol: "Oprichter van Labelruimte",
-    // Vier blokken, elk met een kopje en een alinea.
-    blokken: [
-      { kop: "Ik zat zelf aan tafel", tekst: "Ik ging zelf op gesprek bij een hypotheekadviseur. Ik wilde weten hoeveel ik kon lenen en waar ik op moest letten." },
-      { kop: "Veel informatie in één keer", tekst: "Het gesprek ging snel. Ik kreeg heel veel informatie tegelijk. Ik vond het lastig om alles te volgen en te onthouden." },
-      { kop: "Dit wist ik niet", tekst: "Ik wist niet dat het energielabel invloed heeft op je leenruimte. Bij een zuinig huis mag je soms meer lenen. En je mag extra lenen om je huis zuiniger te maken." },
-      { kop: "Daarom maakte ik Labelruimte", tekst: "Ik wil dat jij dit wel weet, nog vóór je gesprek. Met Labelruimte zie je in een minuut wat het energielabel doet met je leenruimte. Zo ga je beter voorbereid naar je adviseur." }
+    // Je verhaal, in één tegel. Elke regel tussen aanhalingstekens is
+    // een alinea.
+    verhaal: [
+      "Als starter is het ontzettend moeilijk om ertussen te komen op de woningmarkt. Ik betaal zelf veel huur voor mijn inkomen. Daarom wil ik graag kopen, om in ieder geval in te stappen op de hypotheekmarkt. Toen ik me ging oriënteren, ontdekte ik dat er extra mogelijkheden zijn: met een goed energielabel mag je meer lenen, en je mag extra lenen om je huis te verduurzamen. Zo help je jezelf én het milieu.",
+      "Ik kwam erachter dat veel mensen in mijn omgeving deze regels niet kenden, terwijl ze wel op zoek zijn naar een huis. Daarom heb ik Labelruimte bedacht. Labelruimte geeft iedereen snel, laagdrempelig en gratis informatie. Zo wil ik starters gelijkere kansen geven op de hypotheekmarkt."
     ],
-    // Link onder de blokken naar het impactrapport.
+    // Link onder het verhaal naar het impactrapport.
     impactLink: "Bekijk ons impactrapport",
     knop: "Doe de check"
   },
@@ -264,8 +265,8 @@ window.GEGEVENS = {
      verwachtingen voor jaar 1, geen gemeten resultaten.
   */
   impact: {
-    // De link onderaan elke pagina.
-    voetLink: "Impactrapport",
+    // De link rechtsboven, naast "Waarom Labelruimte?".
+    kopLink: "Impactrapport",
     titel: "Impactrapport",
     intro: "Labelruimte wil dat meer starters hun nieuwe huis verduurzamen. Want wie weet wat het energielabel doet, kiest slimmer.",
 

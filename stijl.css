@@ -66,9 +66,10 @@ body {
 .logo { display: inline-block; vertical-align: top; line-height: 0; border-radius: 0.4rem; }
 .logo svg { display: block; height: 2rem; width: 9.8rem; font-family: inherit; }
 .kopregel { margin: 0.2rem 0 0; font-size: 0.9rem; color: var(--tekst-zacht); }
-/* Logo links, link "Waarom Labelruimte?" rechts. Past het niet naast
-   elkaar, dan komt de link onder het logo. */
+/* Logo links, de links "Waarom Labelruimte?" en "Impactrapport" rechts.
+   Past het niet naast elkaar, dan komen de links onder het logo. */
 .kop-rij { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1rem; }
+.kop-links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
 .kop-link { font-size: 0.95rem; padding: 0.4rem 0; }
 .kopregel:empty { display: none; }
 
@@ -577,14 +578,17 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
   object-fit: cover;
 }
 .oprichter-naam { font-weight: 700; margin: 0; }
+.oprichter-naam:empty { display: none; }
 .oprichter-rol { font-size: 0.95rem; color: var(--tekst-zacht); margin: 0; }
+.verhaal { padding: 1.5rem 1.25rem; }
+.verhaal p { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.75; }
+.verhaal p:last-child { margin-bottom: 0; }
 .waarom-impact { margin: 0.25rem 0 0; text-align: center; }
 #scherm-waarom > .knop { margin: 1.5rem 0 2rem; }
 
 /* ---------- Onderaan ---------- */
 .voet { padding: 0 0 2rem; font-size: 0.85rem; color: var(--tekst-zacht); }
 .voet p { margin: 0; }
-.voet .voet-link { margin-top: 0.5rem; }
 
 /* ---------- Bredere schermen ---------- */
 @media (min-width: 40rem) {
