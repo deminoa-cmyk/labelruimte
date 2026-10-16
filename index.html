@@ -171,13 +171,70 @@
 
       <div id="waarom-blokken"></div>
 
+      <p class="waarom-impact"><a href="#impact" data-tekst="waarom.impactLink"></a></p>
       <button type="button" class="knop" data-naar="start"><span data-tekst="waarom.knop"></span> <span class="pijl" aria-hidden="true">→</span></button>
+    </section>
+
+    <!-- SCHERM 4: IMPACTRAPPORT -->
+    <section id="scherm-impact" class="scherm" aria-labelledby="impact-titel" hidden>
+      <button type="button" class="terug" id="impact-terug"></button>
+      <h1 id="impact-titel" tabindex="-1" data-tekst="impact.titel"></h1>
+      <p class="intro" data-tekst="impact.intro"></p>
+
+      <div class="kaart hoofdkaart">
+        <h2 data-tekst="impact.doelKop"></h2>
+        <p class="bedrag" data-tekst="impact.doelGetal"></p>
+        <p class="uitleg" data-tekst="impact.doelUitleg"></p>
+        <p class="impact-co2" data-tekst="impact.co2"></p>
+      </div>
+
+      <div class="kaart">
+        <h2 data-tekst="impact.labelKop"></h2>
+        <p class="bedrag" data-tekst="impact.labelGetal"></p>
+        <p class="uitleg" data-tekst="impact.labelUitleg"></p>
+      </div>
+
+      <div class="kaart zacht">
+        <h2 data-tekst="impact.stappenKop"></h2>
+        <ol id="impact-stappen" class="impact-stappen"></ol>
+      </div>
+
+      <div class="kaart">
+        <h2 data-tekst="impact.rekenKop"></h2>
+        <ul id="impact-reken" class="uitleg uitlegpunten"></ul>
+        <p class="hulptekst" data-tekst="impact.rekenNoot"></p>
+      </div>
+
+      <div class="kaart impact-binnenkort">
+        <span class="voorbeeld-label" data-tekst="impact.binnenkortLabel"></span>
+        <h2 data-tekst="impact.binnenkortKop"></h2>
+        <p class="uitleg" data-tekst="impact.binnenkortTekst"></p>
+      </div>
+
+      <button type="button" class="knop" data-naar="start"><span data-tekst="impact.knop"></span> <span class="pijl" aria-hidden="true">→</span></button>
+
+      <p class="bron" id="impact-bron"></p>
     </section>
 
   </main>
 
+  <!-- VRAAG NA 20 SECONDEN OP DE UITKOMST -->
+  <aside id="peiling" class="peiling" aria-labelledby="peiling-vraag" hidden>
+    <button type="button" class="peiling-sluit" id="peiling-sluit"><span aria-hidden="true">×</span><span class="onzichtbaar" data-tekst="peiling.sluiten"></span></button>
+    <p id="peiling-teller" class="peiling-teller"></p>
+    <p id="peiling-vraag" class="peiling-vraag" aria-live="polite"></p>
+    <div class="peiling-knoppen" id="peiling-knoppen">
+      <button type="button" class="knop" data-tekst="peiling.ja"></button>
+      <button type="button" class="knop knop-licht" data-tekst="peiling.nee"></button>
+    </div>
+    <p id="peiling-dank" class="peiling-dank" role="status"></p>
+  </aside>
+
   <footer class="voet">
-    <div class="kolom"><p data-tekst="disclaimer"></p></div>
+    <div class="kolom">
+      <p data-tekst="disclaimer"></p>
+      <p class="voet-link"><a href="#impact" data-tekst="impact.voetLink"></a></p>
+    </div>
   </footer>
 
   <script src="gegevens.js"></script>

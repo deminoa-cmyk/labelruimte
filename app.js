@@ -538,6 +538,81 @@
     waaromBlokken.appendChild(blok);
   });
 
+  /* ---------- Scherm 4: Impactrapport ---------- */
+  var I = G.impact;
+  var impactStappen = document.getElementById("impact-stappen");
+  I.stappen.forEach(function (s) { impactStappen.appendChild(maak("li", "", s)); });
+  var impactReken = document.getElementById("impact-reken");
+  I.reken.forEach(function (r) { impactReken.appendChild(maak("li", "", r)); });
+
+  var impactBron = document.getElementById("impact-bron");
+  impactBron.appendChild(document.createTextNode(I.bron.voor));
+  I.bron.links.forEach(function (b, i) {
+    if (i > 0) impactBron.appendChild(document.createTextNode(I.bron.tussen));
+    impactBron.appendChild(nieuwTabbladLink(maak("a", "", b.tekst), b.link));
+  });
+  impactBron.appendChild(document.createTextNode(I.bron.na));
+
+  /* ---------- Vraag na 20 seconden op de uitkomst ----------
+     De teller loopt alleen zolang de uitkomst in beeld is. De vraag
+     komt één keer per bezoek. De vragen komen na elkaar. De
+     antwoorden worden nergens bewaard. */
+  var peiling = document.getElementById("peiling");
+  var peilingKnoppen = document.getElementById("peiling-knoppen");
+  var peilingDank = document.getElementById("peiling-dank");
+  var peilingVraag = document.getElementById("peiling-vraag");
+  var peilingTeller = document.getElementById("peiling-teller");
+  var peilingStap = 0;   // welke vraag nu in beeld is
+  var peilingKlok = null;
+  var peilingGeweest = false;
+
+  function startPeiling() {
+    if (peilingGeweest || peilingKlok) return;
+    peilingKlok = setTimeout(function () {
+      peilingKlok = null;
+      peilingGeweest = true;
+      peiling.hidden = false;
+    }, G.peiling.wachtSeconden * 1000);
+  }
+
+  function toonVraag() {
+    peilingVraag.textContent = G.peiling.vragen[peilingStap];
+    peilingTeller.textContent = G.peiling.teller
+      .replace("{nr}", peilingStap + 1)
+      .replace("{totaal}", G.peiling.vragen.length);
+  }
+  toonVraag();
+
+  function sluitPeiling() {
+    clearTimeout(peilingKlok);
+    peilingKlok = null;
+    // Stond de focus in de vraag, zet hem dan terug op de titel.
+    var hadFocus = peiling.contains(document.activeElement);
+    peiling.hidden = true;
+    if (hadFocus) document.getElementById("uitkomst-titel").focus();
+  }
+
+  document.getElementById("peiling-sluit").addEventListener("click", sluitPeiling);
+  peilingKnoppen.querySelectorAll("button").forEach(function (knop) {
+    knop.addEventListener("click", function () {
+      // Nog een vraag over? Dan die laten zien.
+      peilingStap++;
+      if (peilingStap < G.peiling.vragen.length) {
+        toonVraag();
+        return;
+      }
+      peilingKnoppen.hidden = true;
+      peilingTeller.textContent = "";
+      peilingVraag.hidden = true;
+      peilingDank.textContent = G.peiling.dank;
+      document.getElementById("peiling-sluit").focus();
+      setTimeout(sluitPeiling, 3000);
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !peiling.hidden) sluitPeiling();
+  });
+
   /* ---------- Wisselen tussen schermen ---------- */
   // Het scherm staat achter het # in de adresbalk, zodat ook de
   // terugknop van de browser of telefoon werkt.
@@ -546,16 +621,20 @@
     else location.hash = naam;
   }
 
-  // Het scherm dat nu open is, en waar je vandaan kwam toen je
-  // "Waarom Labelruimte?" opende. Daar brengt de terugknop je weer heen.
+  // Het scherm dat nu open is, en per scherm waar je vandaan kwam toen
+  // je het opende. Daar brengt de terugknop je weer heen.
   var huidig = "start";
-  var voorWaarom = "start";
+  var terugNaar = { waarom: "start", impact: "start" };
 
   function toonScherm(naam) {
-    if (["start", "uitkomst", "waarom"].indexOf(naam) < 0) naam = "start";
+    if (["start", "uitkomst", "waarom", "impact"].indexOf(naam) < 0) naam = "start";
     if (naam === "uitkomst" && gekozen.labelIndex < 0) naam = "start";
-    if (naam === "waarom" && huidig !== "waarom") voorWaarom = huidig;
+    // Ga je terug naar het scherm waar je vandaan kwam, dan blijft
+    // de terugknop van dat scherm zoals hij was.
+    if (terugNaar[naam] && huidig !== naam && terugNaar[huidig] !== naam) terugNaar[naam] = huidig;
     huidig = naam;
+    if (naam === "uitkomst") startPeiling();
+    else sluitPeiling();
     document.querySelectorAll(".scherm").forEach(function (s) {
       s.hidden = s.id !== "scherm-" + naam;
     });
@@ -567,8 +646,10 @@
     knop.addEventListener("click", function () { gaNaar(knop.getAttribute("data-naar")); });
   });
 
-  document.getElementById("waarom-terug").addEventListener("click", function () {
-    gaNaar(voorWaarom);
+  ["waarom", "impact"].forEach(function (scherm) {
+    document.getElementById(scherm + "-terug").addEventListener("click", function () {
+      gaNaar(terugNaar[scherm]);
+    });
   });
 
   window.addEventListener("hashchange", function () {
@@ -576,9 +657,9 @@
   });
 
   // Bij het openen op het startscherm beginnen, behalve bij een link
-  // naar #waarom: dan meteen dat scherm.
-  if (location.hash === "#waarom") {
-    toonScherm("waarom");
+  // naar #waarom of #impact: dan meteen dat scherm.
+  if (location.hash === "#waarom" || location.hash === "#impact") {
+    toonScherm(location.hash.slice(1));
   } else if (location.hash && location.hash !== "#start") {
     history.replaceState(null, "", location.pathname + location.search);
   }

@@ -515,6 +515,58 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
   letter-spacing: 0.06em;
 }
 
+/* ---------- Scherm 4: Impactrapport ---------- */
+.impact-co2 { margin: 0; font-weight: 700; color: var(--wit); }
+.impact-stappen { margin: 0; padding-left: 1.3rem; }
+.impact-stappen li { margin-bottom: 0.5rem; padding-left: 0.2rem; }
+.impact-stappen li::marker { font-weight: 800; color: var(--bosgroen); }
+.impact-binnenkort { border: 1.5px dashed var(--bosgroen); }
+.impact-binnenkort .voorbeeld-label { display: inline-block; margin-bottom: 0.6rem; }
+#scherm-impact > .knop { margin-top: 1.5rem; }
+
+/* ---------- Vraag na 20 seconden ---------- */
+.peiling {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+  max-width: 26rem;
+  margin: 0 auto;
+  padding: 1.1rem 1.1rem 1rem;
+  background: var(--wit);
+  border: 1px solid var(--rand-licht);
+  border-radius: var(--rond);
+  box-shadow: 0 0.5rem 2rem rgba(35, 42, 40, 0.18);
+  animation: peiling-in 0.3s ease-out;
+}
+.peiling-teller { margin: 0 2.25rem 0.2rem 0; font-size: 0.8rem; font-weight: 700; color: var(--tekst-zacht); }
+.peiling-teller:empty { display: none; }
+.peiling-vraag { margin: 0 2.25rem 0.9rem 0; font-weight: 700; line-height: 1.4; }
+.peiling-knoppen { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.peiling-knoppen .knop { min-height: 3rem; }
+.peiling-sluit {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  background: none;
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--tekst-zacht);
+  cursor: pointer;
+}
+.peiling-sluit:hover { background: var(--saliegroen-zacht); color: var(--antraciet); }
+.peiling-dank { margin: 0; font-weight: 600; color: var(--bosgroen-donker); }
+.peiling-dank:empty { display: none; }
+@keyframes peiling-in { from { transform: translateY(1rem); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .peiling { animation: none; } }
+
 /* ---------- Scherm 3: Waarom ---------- */
 .oprichter { text-align: center; margin: 0 0 1.5rem; }
 .oprichter-foto {
@@ -526,11 +578,13 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
 }
 .oprichter-naam { font-weight: 700; margin: 0; }
 .oprichter-rol { font-size: 0.95rem; color: var(--tekst-zacht); margin: 0; }
-#waarom-blokken + .knop { margin: 1.5rem 0 2rem; }
+.waarom-impact { margin: 0.25rem 0 0; text-align: center; }
+#scherm-waarom > .knop { margin: 1.5rem 0 2rem; }
 
 /* ---------- Onderaan ---------- */
 .voet { padding: 0 0 2rem; font-size: 0.85rem; color: var(--tekst-zacht); }
 .voet p { margin: 0; }
+.voet .voet-link { margin-top: 0.5rem; }
 
 /* ---------- Bredere schermen ---------- */
 @media (min-width: 40rem) {

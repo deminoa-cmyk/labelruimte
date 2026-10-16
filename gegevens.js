@@ -254,7 +254,84 @@ window.GEGEVENS = {
       { kop: "Dit wist ik niet", tekst: "Ik wist niet dat het energielabel invloed heeft op je leenruimte. Bij een zuinig huis mag je soms meer lenen. En je mag extra lenen om je huis zuiniger te maken." },
       { kop: "Daarom maakte ik Labelruimte", tekst: "Ik wil dat jij dit wel weet, nog vóór je gesprek. Met Labelruimte zie je in een minuut wat het energielabel doet met je leenruimte. Zo ga je beter voorbereid naar je adviseur." }
     ],
+    // Link onder de blokken naar het impactrapport.
+    impactLink: "Bekijk ons impactrapport",
     knop: "Doe de check"
+  },
+
+  /* ---------- Scherm 4: Impactrapport ----------
+     De cijfers komen uit het eindportfolio (bijlage B). Het zijn
+     verwachtingen voor jaar 1, geen gemeten resultaten.
+  */
+  impact: {
+    // De link onderaan elke pagina.
+    voetLink: "Impactrapport",
+    titel: "Impactrapport",
+    intro: "Labelruimte wil dat meer starters hun nieuwe huis verduurzamen. Want wie weet wat het energielabel doet, kiest slimmer.",
+
+    doelKop: "Ons doel voor jaar 1",
+    doelGetal: "151.110 m³",
+    doelUitleg: "Zoveel gas willen we per jaar besparen. Dat doen we door starters te laten zien wat verduurzamen hun oplevert.",
+    co2: "Dat is ongeveer 269 ton minder CO₂-uitstoot per jaar.",
+
+    labelKop: "Een beter label scheelt veel gas",
+    labelGetal: "34% minder",
+    labelUitleg: "Een gemiddeld huishouden met label A verbruikt 34% minder gas dan een huishouden met label G.",
+
+    stappenKop: "Zo maken we impact",
+    stappen: [
+      "Je doet de check en ziet wat het energielabel doet met je leenruimte.",
+      "Je ziet hoeveel een geldverstrekker je extra mag lenen om je huis zuiniger te maken.",
+      "Je gaat beter voorbereid naar je hypotheekadviseur.",
+      "Je verduurzaamt je nieuwe huis. Dat scheelt gas en CO₂-uitstoot."
+    ],
+
+    rekenKop: "Zo rekenen we",
+    reken: [
+      "We verwachten dat 1.375 starters in het eerste jaar de check doen.",
+      "We gaan ervan uit dat 1 op de 10 starters gaat verduurzamen. Dat zijn 138 woningen.",
+      "Een woning die goed geïsoleerd wordt, bespaart ongeveer 1.095 m³ gas per jaar.",
+      "138 woningen × 1.095 m³ = 151.110 m³ gas per jaar.",
+      "Elke m³ gas geeft 1,782 kg CO₂-uitstoot. Zo komen we op ongeveer 269 ton CO₂ per jaar."
+    ],
+    rekenNoot: "Dit is een schatting. Hoeveel we echt besparen, hangt af van welk huis starters kopen en welke maatregelen ze nemen.",
+
+    binnenkortLabel: "COMING SOON",
+    binnenkortKop: "Impactrapport jaar 1",
+    binnenkortTekst: "Na ons eerste jaar kijken we wat Labelruimte echt heeft opgeleverd. Hoeveel starters deden de check? Hoeveel van hen verduurzaamden hun huis? En hoeveel CO₂-uitstoot scheelde dat? Het antwoord lees je hier.",
+
+    knop: "Doe de check",
+
+    // De bronregel onderaan: tekst ervoor, de links, tekst erna.
+    bron: {
+      voor: "Bronnen: ",
+      links: [
+        { tekst: "RaboResearch (2023)", link: "https://www.rabobank.nl/kennis/d011347940-energielabel-zegt-niet-alles-over-energieverbruik" },
+        { tekst: "Milieu Centraal (2026)", link: "https://www.milieucentraal.nl/energie-besparen/isoleren-en-besparen/alles-over-isoleren/" },
+        { tekst: "RVO (2023)", link: "https://www.rvo.nl/sites/default/files/2023-10/CO2-emissiefactor-aardgas-Nederlandse-rapportage-en-ETS-%202023.pdf" }
+      ],
+      tussen: ", ",
+      na: "."
+    }
+  },
+
+  /* ---------- Vraag na 20 seconden op de uitkomst ----------
+     Verschijnt één keer per bezoek, als de uitkomst zo lang in beeld
+     is. De vragen komen na elkaar. De antwoorden worden nergens
+     opgeslagen of verstuurd.
+  */
+  peiling: {
+    wachtSeconden: 20,
+    vragen: [
+      "Voel je je beter voorbereid op het kopen van een woning?",
+      "Ben je door deze informatie van plan om je woning te verduurzamen?"
+    ],
+    // {nr} en {totaal} worden vervangen door bijvoorbeeld 1 en 2.
+    teller: "Vraag {nr} van {totaal}",
+    ja: "Ja",
+    nee: "Nee",
+    sluiten: "Sluiten",
+    dank: "Dank je wel voor je antwoorden."
   },
 
   // Het woord dat bij elke voorbeeldwaarde verschijnt.
