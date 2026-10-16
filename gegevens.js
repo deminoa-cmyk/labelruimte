@@ -198,15 +198,11 @@ window.GEGEVENS = {
       "Wat doet mijn studieschuld met wat ik kan lenen?"
     ],
 
-    energieKop: "Schatting energiekosten per maand",
-    // Vul hier later zelf een bedrag in, bijvoorbeeld "€ 150".
-    energieWaarde: "€ ……",
-    energieUitleg: "Per maand",
-
     // Blok met hypotheekadviseurs. Dit zijn VOORBEELDEN: de namen, logo's,
     // nummers en scores zijn verzonnen. De nummers kunnen niet bestaan
     // (een abonneenummer begint nooit met een 0).
     // logo = de letters in het logo, logoVorm = vierkant, rond of blad.
+    adviseursKop: "Praat met een hypotheekadviseur",
     adviseurs: [
       { naam: "Lindeboom Hypotheekadvies", plaats: "Utrecht",   telefoon: "030 012 34 56", sterren: "4,8 van 5 op Google", logo: "LH", logoVorm: "vierkant" },
       { naam: "Adviesbureau De Kade",      plaats: "Zwolle",    telefoon: "038 045 67 89", sterren: "4,6 van 5 op Google", logo: "DK", logoVorm: "rond" },
@@ -321,16 +317,16 @@ window.GEGEVENS = {
     }
   },
 
-  /* ---------- Vraag na 20 seconden op de uitkomst ----------
+  /* ---------- Vraag na 15 seconden op de uitkomst ----------
      Verschijnt één keer per bezoek, als de uitkomst zo lang in beeld
      is. De vragen komen na elkaar. De antwoorden worden nergens
      opgeslagen of verstuurd.
   */
   peiling: {
-    wachtSeconden: 20,
+    wachtSeconden: 15,
     vragen: [
       "Voel je je beter voorbereid op het kopen van een woning?",
-      "Ben je door deze informatie van plan om je woning te verduurzamen?"
+      "Wil je extra lenen om je eerste huis te verduurzamen?"
     ],
     // {nr} en {totaal} worden vervangen door bijvoorbeeld 1 en 2.
     teller: "Vraag {nr} van {totaal}",

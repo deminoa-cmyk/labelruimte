@@ -39,14 +39,6 @@
     return a;
   }
 
-  // Een bedrag met een duidelijke VOORBEELD-markering erbij.
-  function voorbeeld(waarde) {
-    var span = maak("span", "voorbeeld");
-    span.appendChild(maak("span", "voorbeeld-waarde", waarde));
-    span.appendChild(maak("span", "voorbeeld-label", G.voorbeeldWoord));
-    return span;
-  }
-
   /* ---------- Vaste teksten invullen ---------- */
   document.querySelectorAll("[data-tekst]").forEach(function (el) {
     el.textContent = tekst(el.getAttribute("data-tekst")) || "";
@@ -405,8 +397,6 @@
   var vragen = document.getElementById("vragen");
   G.uitkomst.vragen.forEach(function (v) { vragen.appendChild(maak("li", "", v)); });
 
-  document.getElementById("energie-waarde").appendChild(voorbeeld(G.uitkomst.energieWaarde));
-
   // Hypotheekadviseurs. Het zijn allemaal VOORBEELDEN met een verzonnen
   // logo, nummer en score. Staat bij belNaar in gegevens.js een nummer,
   // dan belt de knop naar dat nummer. Anders laat de knop alleen een
@@ -465,9 +455,15 @@
         var plek = node.nodeValue.toLowerCase().indexOf(woord);
         if (plek < 0) continue;
         var rest = node.splitText(plek + woord.length);
-        var knop = maak("button", "wat-knop", G.uitkomst.watIsDitKnop);
+        // Een klein rondje met een vraagteken. Schermlezers horen
+        // "Wat is dit? (woord)".
+        var knop = maak("button", "wat-knop");
         knop.type = "button";
-        knop.appendChild(maak("span", "onzichtbaar", " (" + b.woord + ")"));
+        knop.title = G.uitkomst.watIsDitKnop;
+        var vraagteken = maak("span", "", "?");
+        vraagteken.setAttribute("aria-hidden", "true");
+        knop.appendChild(vraagteken);
+        knop.appendChild(maak("span", "onzichtbaar", G.uitkomst.watIsDitKnop + " (" + b.woord + ")"));
         knop.setAttribute("aria-expanded", "false");
         knop.setAttribute("aria-controls", "begrip-" + i);
         var uitleg = maak("span", "begrip-uitleg", b.uitleg);
@@ -567,7 +563,7 @@
   });
   impactBron.appendChild(document.createTextNode(I.bron.na));
 
-  /* ---------- Vraag na 20 seconden op de uitkomst ----------
+  /* ---------- Vraag na 15 seconden op de uitkomst ----------
      De teller loopt alleen zolang de uitkomst in beeld is. De vraag
      komt één keer per bezoek. De vragen komen na elkaar. De
      antwoorden worden nergens bewaard. */

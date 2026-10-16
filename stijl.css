@@ -382,26 +382,33 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
 .uitlegpunten li { margin-bottom: 0.4rem; }
 
 /* "Wat is dit?" */
+/* Klein rondje met een vraagteken. Het klikvlak is groter dan het
+   rondje zelf, zodat je het op een telefoon makkelijk raakt. */
 .wat-knop {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.75rem;
-  padding: 0 0.55rem;
-  margin: 0 0.1rem;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  margin: 0 0.15rem;
   font: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 800;
   line-height: 1;
   color: var(--bosgroen);
   background: transparent;
-  border: 1px solid currentColor;
-  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
   cursor: pointer;
-  vertical-align: 0.05em;
+  vertical-align: 0.12em;
 }
-.wat-knop[aria-expanded="true"] { background: var(--saliegroen-zacht); }
+.wat-knop::after { content: ""; position: absolute; inset: -0.65rem; }
+.wat-knop:hover { background: var(--saliegroen-zacht); }
+.wat-knop[aria-expanded="true"] { background: var(--bosgroen); border-color: var(--bosgroen); color: var(--wit); }
 .hoofdkaart .wat-knop { color: var(--wit); }
-.hoofdkaart .wat-knop[aria-expanded="true"] { background: rgba(255, 255, 255, 0.15); }
+.hoofdkaart .wat-knop:hover { background: rgba(255, 255, 255, 0.15); }
+.hoofdkaart .wat-knop[aria-expanded="true"] { background: var(--wit); border-color: var(--wit); color: var(--bosgroen); }
 .begrip-uitleg {
   display: block;
   margin: 0.4rem 0;
@@ -447,8 +454,6 @@ input[readonly] { background: var(--creme); border-color: var(--rand-licht); col
 
 .vragenlijst { margin: 0; padding-left: 1.1rem; }
 .vragenlijst li { margin-bottom: 0.5rem; }
-
-.energie { margin: 0; }
 
 /* Rustige melding boven de bedragen */
 .rustig {
@@ -521,13 +526,6 @@ a.knop { text-decoration: none; }
 .bron a { font-weight: 600; }
 
 /* ---------- VOORBEELD-markering ---------- */
-.voorbeeld {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-.voorbeeld-waarde { font-weight: 700; }
 .voorbeeld-label {
   padding: 0.1rem 0.45rem;
   border-radius: 0.35rem;
@@ -547,7 +545,7 @@ a.knop { text-decoration: none; }
 .impact-binnenkort .voorbeeld-label { display: inline-block; margin-bottom: 0.6rem; }
 #scherm-impact > .knop { margin-top: 1.5rem; }
 
-/* ---------- Vraag na 20 seconden ---------- */
+/* ---------- Vraag na 15 seconden ---------- */
 .peiling {
   position: fixed;
   left: 1rem;
