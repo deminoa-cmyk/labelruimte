@@ -545,7 +545,7 @@ a.knop { text-decoration: none; }
 .impact-binnenkort .voorbeeld-label { display: inline-block; margin-bottom: 0.6rem; }
 #scherm-impact > .knop { margin-top: 1.5rem; }
 
-/* ---------- Vraag na 15 seconden ---------- */
+/* ---------- Vraag na 6 seconden ---------- */
 .peiling {
   position: fixed;
   left: 1rem;

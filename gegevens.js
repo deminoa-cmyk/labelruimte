@@ -317,13 +317,13 @@ window.GEGEVENS = {
     }
   },
 
-  /* ---------- Vraag na 15 seconden op de uitkomst ----------
+  /* ---------- Vraag na 6 seconden op de uitkomst ----------
      Verschijnt één keer per bezoek, als de uitkomst zo lang in beeld
      is. De vragen komen na elkaar. De antwoorden worden nergens
      opgeslagen of verstuurd.
   */
   peiling: {
-    wachtSeconden: 15,
+    wachtSeconden: 6,
     vragen: [
       "Voel je je beter voorbereid op het kopen van een woning?",
       "Wil je extra lenen om je eerste huis te verduurzamen?"

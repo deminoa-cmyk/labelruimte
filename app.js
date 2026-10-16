@@ -442,8 +442,8 @@
     adviseurs.appendChild(li);
   });
 
-  // Bij het eerste gebruik van een moeilijk woord komt een knopje
-  // "Wat is dit?" dat een uitleg van één zin uitklapt.
+  // Bij het eerste gebruik van een moeilijk woord komt aan het eind van
+  // die zin een rond vraagteken dat een uitleg van één zin uitklapt.
   var vakken = document.querySelectorAll("#scherm-uitkomst .met-begrippen");
   G.uitkomst.begrippen.forEach(function (b, i) {
     var woord = b.woord.toLowerCase();
@@ -454,7 +454,11 @@
         if (node.parentNode.closest(".wat-knop, .begrip-uitleg")) continue;
         var plek = node.nodeValue.toLowerCase().indexOf(woord);
         if (plek < 0) continue;
-        var rest = node.splitText(plek + woord.length);
+        // Het vraagteken komt aan het eind van de zin met het woord:
+        // na de eerstvolgende punt, vraagteken of uitroepteken.
+        var na = node.nodeValue.slice(plek + woord.length);
+        var einde = na.search(/[.?!]/);
+        var rest = node.splitText(plek + woord.length + (einde < 0 ? na.length : einde + 1));
         // Een klein rondje met een vraagteken. Schermlezers horen
         // "Wat is dit? (woord)".
         var knop = maak("button", "wat-knop");
@@ -563,7 +567,7 @@
   });
   impactBron.appendChild(document.createTextNode(I.bron.na));
 
-  /* ---------- Vraag na 15 seconden op de uitkomst ----------
+  /* ---------- Vraag na 6 seconden op de uitkomst ----------
      De teller loopt alleen zolang de uitkomst in beeld is. De vraag
      komt één keer per bezoek. De vragen komen na elkaar. De
      antwoorden worden nergens bewaard. */
