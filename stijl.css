@@ -587,6 +587,10 @@ a.knop { text-decoration: none; }
 .peiling-dank:empty { display: none; }
 @keyframes peiling-in { from { transform: translateY(1rem); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .peiling { animation: none; } }
+/* Op een computer staat de vraag als kaartje rechtsonder in de hoek. */
+@media (min-width: 48rem) {
+  .peiling { left: auto; right: 1.5rem; bottom: 1.5rem; width: 24rem; margin: 0; }
+}
 
 /* ---------- Scherm 3: Waarom ---------- */
 .oprichter { text-align: center; margin: 0 0 1.5rem; }
